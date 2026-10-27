@@ -258,7 +258,8 @@ export class MainToolbarComponent implements OnInit {
   onSaveProject(isSaveAs) {
     this.onStopSimulation();
     const fs = this.accessCpnService.getFs();
-    if (fs && !isSaveAs) {
+    // Modified 2026-10-27: browser fallback has a path but no Electron fs API.
+    if (fs && fs.fs && typeof fs.fs.writeFile === "function" && !isSaveAs) {
       fs.fs.writeFile(
         fs.path,
         this.projectService.getStringProjectDataForSave(),
