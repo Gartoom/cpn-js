@@ -33,6 +33,6 @@ RUN useradd -m -u 1000 cpn && mkdir -p /data /store \
     && chown cpn:cpn /data /store /app && chmod +x /app/start.sh
 USER cpn
 WORKDIR /data
-ENV JAVA_TOOL_OPTIONS="-Xms64m -Xmx512m -XX:MaxMetaspaceSize=192m -XX:ReservedCodeCacheSize=64m -Djava.awt.headless=true"
+ENV JAVA_TOOL_OPTIONS="-Xms32m -Xmx512m -XX:MaxMetaspaceSize=192m -XX:ReservedCodeCacheSize=64m -XX:+UseSerialGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=30 -XX:CICompilerCount=2 -Djava.awt.headless=true"
 EXPOSE 8080
 CMD ["/app/start.sh"]

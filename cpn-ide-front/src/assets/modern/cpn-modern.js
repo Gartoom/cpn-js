@@ -92,6 +92,13 @@
       window.dispatchEvent(new Event('resize'));
     });
   });
-  new MutationObserver(()=>{if(!scheduled){scheduled=true;requestAnimationFrame(decorate);}}).observe(document.documentElement,{childList:true,characterData:true,subtree:true});
+  new MutationObserver(records=>{
+    // Diagram animation, console output and code editing do not change toolbar semantics.
+    const relevant=records.some(record=>{
+      const target=record.target.nodeType===1?record.target:record.target.parentElement;
+      return target&&!target.closest('svg,.logConsole,.CodeMirror,.cpn-status');
+    });
+    if(relevant&&!scheduled){scheduled=true;requestAnimationFrame(decorate);}
+  }).observe(document.documentElement,{childList:true,characterData:true,subtree:true});
   decorate();
 })();
