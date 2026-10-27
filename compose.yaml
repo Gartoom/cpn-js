@@ -1,6 +1,9 @@
 services:
   cpnide:
-    build: .
+    build:
+      context: .
+      args:
+        CPN_SOURCE_REF: ${CPN_SOURCE_REF:-master}
     image: cpnide-docker:local
     init: true
     ports:

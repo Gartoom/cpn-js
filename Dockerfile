@@ -1,12 +1,16 @@
 # Modified Docker distribution, 2026-10-27. See LICENSE and NOTICE.md.
 FROM node:14-bullseye AS frontend
 WORKDIR /src
+COPY LICENSE /tmp/CPNIDE-LICENSE
 COPY cpn-ide-front/package*.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY cpn-ide-front/ ./
+ARG CPN_SOURCE_REF=master
 ENV NODE_OPTIONS=--max-old-space-size=1536 NG_CLI_ANALYTICS=false
 RUN printf "export class AppVersion { public static readonly buildVersion = '1.24.1031-docker'; }" > src/app/app.version.ts \
-    && ./node_modules/.bin/ng build --prod --build-optimizer=false --base-href ./ --output-path=/web
+    && node -e "const fs=require('fs');const ref=process.env.CPN_SOURCE_REF;if(!/^(master|[a-f0-9]{40})$/.test(ref))throw Error('Invalid source ref');const p='src/assets/modern/source-license.html';fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace(/__CPN_SOURCE_REF__/g,ref));" \
+    && ./node_modules/.bin/ng build --prod --build-optimizer=false --base-href ./ --output-path=/web \
+    && cp /tmp/CPNIDE-LICENSE /web/LICENSE
 
 FROM eclipse-temurin:8-jdk-jammy AS backend
 # Dependency on frontend also keeps the two memory-intensive builds sequential.

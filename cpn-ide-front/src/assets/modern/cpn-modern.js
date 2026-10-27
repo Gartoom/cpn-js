@@ -10,6 +10,12 @@
     const toolbar=document.querySelector('app-main-toolbar>nav');
     if(!toolbar)return;
     mark(toolbar,'aria-label','Project actions');
+    if(!toolbar.querySelector('.cpn-source')){
+      const item=document.createElement('li');item.className='nav-item cpn-source';
+      const link=document.createElement('a');link.className='nav-link';
+      link.href='assets/modern/source-license.html';link.target='_blank';link.rel='noopener';
+      link.textContent='Source / license';item.appendChild(link);toolbar.querySelector('ul').appendChild(item);
+    }
     toolbar.querySelectorAll('div.nav-link').forEach(el=>{
       const label=readable(el);
       mark(el,'role','button');mark(el,'tabindex','0');mark(el,'aria-label',label);mark(el,'title',label);
