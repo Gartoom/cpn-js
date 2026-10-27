@@ -1,0 +1,39 @@
+name: Verify Docker distribution
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-and-simulate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+      - name: Check distribution sources
+        run: ./scripts/check-source.sh
+      - name: Build the container
+        run: ./scripts/build.sh
+      - name: Start the server
+        run: |
+          docker compose up -d
+          for attempt in $(seq 1 90); do
+            if curl -fsS http://127.0.0.1:18736/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          docker compose logs
+          exit 1
+      - name: Validate and fire a transition
+        run: python3 scripts/verify-runtime.py
+      - name: Show server logs on failure
+        if: failure()
+        run: docker compose logs --tail 120
+      - name: Stop test containers
+        if: always()
+        run: docker compose down
