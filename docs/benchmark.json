@@ -1,0 +1,122 @@
+[
+  {
+    "variant": "modern",
+    "run": 0,
+    "startup_s": 2.467,
+    "validation_s": 5.036,
+    "sim_init_s": 1.143,
+    "eight_steps_s": 0.084,
+    "memory": "240.2MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 1777954,
+    "encoding": null,
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  },
+  {
+    "variant": "optimized",
+    "run": 1,
+    "startup_s": 2.609,
+    "validation_s": 4.826,
+    "sim_init_s": 1.146,
+    "eight_steps_s": 0.074,
+    "memory": "240.3MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 413868,
+    "encoding": "gzip",
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  },
+  {
+    "variant": "modern",
+    "run": 2,
+    "startup_s": 2.521,
+    "validation_s": 4.836,
+    "sim_init_s": 1.193,
+    "eight_steps_s": 0.083,
+    "memory": "252.1MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 1777954,
+    "encoding": null,
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  },
+  {
+    "variant": "optimized",
+    "run": 3,
+    "startup_s": 2.49,
+    "validation_s": 5.049,
+    "sim_init_s": 1.16,
+    "eight_steps_s": 0.082,
+    "memory": "241.7MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 413868,
+    "encoding": "gzip",
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  },
+  {
+    "variant": "optimized",
+    "run": 0,
+    "startup_s": 2.499,
+    "validation_s": 4.983,
+    "sim_init_s": 1.178,
+    "eight_steps_s": 0.077,
+    "memory": "235.9MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 413868,
+    "encoding": "gzip",
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  },
+  {
+    "variant": "optimized",
+    "run": 1,
+    "startup_s": 2.384,
+    "validation_s": 4.873,
+    "sim_init_s": 1.153,
+    "eight_steps_s": 0.076,
+    "memory": "233.4MiB / 1GiB",
+    "pids": "35",
+    "javascript_bytes": 413868,
+    "encoding": "gzip",
+    "before": {
+      "step": 0,
+      "time": "0"
+    },
+    "after": {
+      "step": 8,
+      "time": "0"
+    }
+  }
+]
