@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import time
 import urllib.request
+import urllib.error
+import http.client
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--url', default='http://127.0.0.1:18736')
@@ -20,6 +22,18 @@ def call(path, body=None):
         'Content-Type': 'application/json', 'X-SessionId': session})
     with urllib.request.urlopen(request, timeout=90) as response:
         return json.load(response)
+
+# Wait only on the idempotent readiness request, never retry model mutations.
+deadline = time.monotonic() + 90
+while True:
+    try:
+        with urllib.request.urlopen(args.url.rstrip('/') + '/', timeout=2) as response:
+            response.read(1)
+        break
+    except (urllib.error.URLError, http.client.HTTPException, TimeoutError):
+        if time.monotonic() >= deadline:
+            raise SystemExit('Server did not become ready within 90 seconds.')
+        time.sleep(0.2)
 
 xml = args.model.read_text(encoding='iso8859-1')
 initialized = call('/init', {'xml': xml, 'complex_verify': True, 'need_sim_restart': False})

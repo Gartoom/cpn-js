@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-27",
+  "platform": "Apple Silicon macOS / Docker Desktop / linux arm64 runtime",
+  "upstream_base": "38b72b8f067bb454ab2bf873cb0d9bca1f1f9a1b",
+  "clean_multistage_build": "passed",
+  "runtime_image_bytes": 586327180,
+  "model": "sample-cpn-models/DiningPhilosophers/DiningPhilosophers.cpn",
+  "validation": {
+    "issues": {},
+    "success": true
+  },
+  "before": {
+    "step": 0,
+    "time": "0"
+  },
+  "after": {
+    "step": 1,
+    "time": "0"
+  },
+  "source_checks": "JavaScript syntax, shell syntax, Python compilation, Compose config, git diff whitespace: passed",
+  "browser_save": "Downloaded cpnide-public-build-test.cpn and parsed as XML",
+  "browser_layout": "Desktop appearance and source/license link checked; 615px responsive controls present",
+  "license_endpoint": "/LICENSE HTTP 200; source page HTTP 200",
+  "source_page_ref_during_local_test": "master (default build argument)",
+  "ci_status": "Workflow supplied; no GitHub Actions result claimed",
+  "scope": "Small bundled models; not exhaustive model, accessibility, security, or license clearance"
+}
