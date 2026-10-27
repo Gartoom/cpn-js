@@ -1,0 +1,16 @@
+services:
+  cpnide:
+    build: .
+    image: cpnide-docker:local
+    init: true
+    ports:
+      - "127.0.0.1:${CPNIDE_PORT:-18736}:8080"
+    mem_limit: 1g
+    cpus: 2
+    stop_grace_period: 20s
+    tmpfs:
+      - /data:rw,exec,size=256m,uid=1000,gid=1000,mode=700
+    volumes:
+      - reports:/store
+volumes:
+  reports:

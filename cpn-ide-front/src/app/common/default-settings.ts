@@ -1,6 +1,6 @@
 export const DEFAULT_SETTINGS = {
   // localServer: 'true',
-  serverAddress: "http://localhost:8080",
+  serverAddress: window.location.origin,
 
   globref: "globref CONST = 1;",
   color: "colset TYPE = unit;",
