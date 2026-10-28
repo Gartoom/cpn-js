@@ -1,10 +1,10 @@
-[contenteditable]:focus {
-    outline: 0px solid transparent;
-}
-
-[contenteditable] {
-    white-space: pre;
-    overflow-x: visible;
-    font-size: 1.2em;
-    font-family: 'Courier New', Courier, monospace;
-}
+.ml-code-toolbar { display: flex; gap: 8px; align-items: center; }
+.ml-code-toolbar button { font: inherit; padding: 3px 8px; border: 1px solid #8190a5; border-radius: 4px; background: #fff; color: #142338; cursor: pointer; }
+.ml-code-toolbar button[aria-pressed="true"] { background: #087e8b; border-color: #087e8b; color: #fff; }
+.ml-code-toolbar button:disabled { opacity: .6; cursor: default; }
+.ml-code-toolbar button:focus-visible { outline: 2px solid #245bd3; outline-offset: 2px; }
+.ml-code-pane { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; padding: 0; overflow: auto; }
+.ml-code-hint { flex: none; margin: 0; padding: 8px 12px; color: #526277; font: 12px/1.4 system-ui, sans-serif; }
+.ml-all-code, .ml-selected-code { box-sizing: border-box; width: 100%; flex: 1; min-height: 100px; padding: 12px; border: 0; background: #fff; color: #142338; font: 13px/1.6 Menlo, Consolas, monospace; white-space: pre; overflow: auto; tab-size: 2; }
+.ml-all-code { resize: none; }
+.ml-selected-code:focus { outline: 2px solid #245bd3; outline-offset: -2px; }

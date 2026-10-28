@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-28 — combined ML declaration view
+
+- Show all stored project declarations and nested blocks together in a read-only code view.
+- Keep single-declaration editing separate and disable it during simulation.
+- Refresh on project/declaration changes and release event subscriptions on destroy.
+- Test deep nesting, ordering, literal code, comment-safe headings and absence of model mutations.
+
 ## 2026-10-27 — modified Docker distribution
 
 Changes relative to upstream `38b72b8f067bb454ab2bf873cb0d9bca1f1f9a1b`, organized as feature commits:

@@ -1,18 +1,19 @@
-<div class="blockHeader">
-  Code
+<div class="blockHeader ml-code-toolbar" role="group" aria-label="Declaration views">
+  <button type="button" (click)="openAll()" [attr.aria-pressed]="showAll">All declarations</button>
+  <button type="button" (click)="openSelected()" [disabled]="!cpnType" [attr.aria-pressed]="!showAll">Selected declaration</button>
 </div>
-
 <div class="tab-container-with-toolbar">
-  <div class="pane" style="padding:0">
-
-    <!-- <textarea ref-textarea
-          style="width:100%; height:100%; padding: 10px; border:none; resize:none"
-          [(ngModel)]="textValue | colorDeclarations | safeHtml"
-          (keyup)="textareaKeyUp($event)"></textarea> -->
-
-    <div style="width:100%; height:100%; padding: 10px; border:none; resize:none" (focusout)="saveEditedData($event)"
-      [contentEditable]="true" [innerHTML]="textValue | colorDeclarations | safeHtml" (keyup)="onKeyUp($event)">
-    </div>
-
+  <div class="pane ml-code-pane">
+    <ng-container *ngIf="showAll; else selectedCode">
+      <p class="ml-code-hint">All project declarations · read-only. Select an item in Project to edit it.</p>
+      <textarea class="ml-all-code" aria-label="All project declarations" readonly [value]="allCode"
+        placeholder="This project has no declarations."></textarea>
+    </ng-container>
+    <ng-template #selectedCode>
+      <p class="ml-code-hint" *ngIf="accessCpnService.isSimulation">Simulation is active. Stop simulation to edit this declaration.</p>
+      <div class="ml-selected-code" role="textbox" aria-label="Selected declaration code" aria-multiline="true"
+        [attr.aria-readonly]="accessCpnService.isSimulation" [contentEditable]="!accessCpnService.isSimulation"
+        [innerHTML]="textValue | colorDeclarations | safeHtml" (focusout)="saveEditedData($event)"></div>
+    </ng-template>
   </div>
 </div>

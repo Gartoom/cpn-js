@@ -47,6 +47,8 @@ On macOS, after the initial build, double-click **`scripts/launch.command`** in 
 5. Choose **Stop simulation** to return to editing.
 6. Choose **Save project**, enter a filename, and confirm **Save**. The browser downloads the `.cpn` file; check your Downloads folder or browser download settings.
 
+**ML editor → All declarations** shows all stored declaration code, including nested blocks, in one selectable read-only view. Select a declaration in Project to return to editing that item. Diagram arc inscriptions and transition guards remain on their diagram elements.
+
 On narrow windows, **Project** and **Inspector** open side drawers; Escape closes them. Tabs support Left/Right, Home/End, Enter and Space. Diagram editing itself has not received a complete keyboard or screen-reader accessibility overhaul.
 
 Save model files explicitly. Closing the tab is not a save operation and does not stop the container. Upstream saving also stops simulation; a `.cpn` model download should not be treated as a complete checkpoint of a running simulation.

@@ -20,6 +20,10 @@ jobs:
         run: ./scripts/check-source.sh
       - name: Build the container
         run: ./scripts/build.sh
+      - name: Check the combined declaration view
+        run: |
+          docker build --target frontend -t cpnide-frontend-checks .
+          docker run --rm -e NODE_PATH=/src/node_modules -e CPN_FRONTEND_ROOT=/src -v "$PWD/scripts:/checks:ro" cpnide-frontend-checks node /checks/test-declaration-overview.js
       - name: Start the server
         run: |
           docker compose up -d
